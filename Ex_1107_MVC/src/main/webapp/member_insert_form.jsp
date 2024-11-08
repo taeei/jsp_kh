@@ -66,7 +66,7 @@
 					if( json[0].r == 1 ){
 						b_idCheck = true;
 						
-						//중복체크 후 아이디 변경 되지 않게 함
+						//중복체크 후 아이디 변경 되지 않게 함   
 						document.getElementById("id").readOnly=true;
 					}
 
