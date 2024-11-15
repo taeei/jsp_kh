@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gogek">
+
+ <!-- 부서목록 조회 -->
+ <!-- resultType 무조건 지정. 어떤 형태로 저장할지 -->
+ <select id="gogek_list" resultType="vo.GogekVO">
+ 	select * from gogek
+ </select>
+ 
+ <!-- 지역별 고객 조회 -->
+ <select id="gogek_search"
+ 		 resultType="vo.GogekVO"
+ 		 parameterType="String">
+ 	select * from gogek where goaddr like '%' || #{location} || '%'
+ </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
