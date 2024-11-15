@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dept">
+	
+	<!-- 전체 부서 조회 -->
+	<select id="dept_list" resultType="vo.DeptVO"> 
+		select * from dept
+	</select>
+
+	<!-- 부서이름으로 조회 -->
+	<select id="search_dname"
+			resultType="vo.DeptVO"
+			parameterType="String">
+		select * from dept where dname=#{dname}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
