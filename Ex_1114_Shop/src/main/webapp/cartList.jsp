@@ -22,6 +22,16 @@
 				
 				f.submit();
 			}
+			
+			function del( c_idx ){
+				
+				if( !confirm('정말 삭제하겠습니까?') ){
+					return;
+				}
+				
+				location.href="cart_delete.do?c_idx="+c_idx;
+				
+			}
 		</script>
 	</head>
 	
@@ -76,7 +86,8 @@
 					</td>
 					
 					<td>
-						<input type="button" value="삭제">
+						<input type="button" value="삭제"
+							   onclick="del('${ vo.c_idx }');">
 					</td>
 				</tr>
 			</c:forEach>

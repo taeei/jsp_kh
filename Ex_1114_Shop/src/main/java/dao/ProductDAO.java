@@ -62,6 +62,16 @@ public class ProductDAO {
 		return cnt;
 	}
 	
+	//원하는 상품 삭제
+	public int delete(int idx) {
+		SqlSession sqlSession = factory.openSession();
+		int res = sqlSession.delete("p.product_del", idx);
+		sqlSession.commit();
+		sqlSession.close();
+		
+		return res;
+	}
+	
 	
 
 }

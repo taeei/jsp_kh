@@ -52,6 +52,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	
+	<!-- 상품 삭제 -->
+	<delete id="product_del"
+			parameterType="int">
+		delete from product where idx=#{idx}
+	</delete>
+	
 </mapper>
 
 

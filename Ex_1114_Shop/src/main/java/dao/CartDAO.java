@@ -54,4 +54,44 @@ public class CartDAO {
 		
 		return res;
 	}
+	
+	//장바구니 상품 제거
+	public int delete(int c_idx) {
+		SqlSession sqlSession = factory.openSession();
+		int res = sqlSession.delete("c.cart_delete", c_idx);
+		sqlSession.commit();
+		sqlSession.close();
+		
+		return res;
+	}
+	
+	//이미 장바구니에 등록되어 있는 상품인지 확인
+	public CartVO selectOne( CartVO vo ) {
+		SqlSession sqlSession = factory.openSession();
+		CartVO resVO = sqlSession.selectOne("c.cart_one", vo);
+		sqlSession.close();
+		
+		return resVO;
+	}
+	
+	// 장바구니 상품 추가
+	public int insert(CartVO vo) {
+		SqlSession sqlSession = factory.openSession();
+		int res = sqlSession.insert("c.cart_insert", vo);
+		sqlSession.commit();
+		sqlSession.close();
+		
+		return res;
+	}
+	
+	//삭제를 원하는 상품과 일치하는 장바구니 품목 삭제
+	public int cartDelete(int idx) {
+		SqlSession sqlSession = factory.openSession();
+		int res = sqlSession.delete("c.cart_delete_join", idx);
+		sqlSession.commit();
+		sqlSession.close();
+		
+		return res;
+	}
 }
+

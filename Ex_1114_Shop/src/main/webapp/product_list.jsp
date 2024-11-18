@@ -53,6 +53,12 @@
 					${ vo.p_num }<br>
 					<input type="button" value="수정"
 					       onclick="location.href='updForm.do?idx=${vo.idx}'">
+					
+					<br>
+
+					<input type="button" value="삭제"
+						   onclick="location.href='productDel.do?idx=${vo.idx}&category=${param.category}'">
+															<!-- 삭제하고 삭제했던 카테고리 리스트 보여주기 위해 -->
 					</td>
 					
 					<td>

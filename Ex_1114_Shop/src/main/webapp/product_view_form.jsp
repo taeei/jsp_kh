@@ -8,7 +8,44 @@
 		<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+	
+		<script src="js/httpRequest.js"></script>
+		
+		<script>
+			function addCart( idx, m_idx ){
+				
+				let url = "cart_insert.do";
+				let param = "idx="+idx+"&m_idx="+m_idx;
+				
+				sendRequest( url, param, resultFn, "get" );
+			}
+			
+			function resultFn(){
+				if( xhr.readyState == 4 && xhr.status == 200 ){
+					
+					//[{'result':'%s'}]
+					let data = xhr.responseText;
+					let json = ( new Function('return '+data) )();
+					
+					if( json[0].result == "no" ){
+						alert("이미 장바구니에 담긴 상품입니다.");
+					}else if( json[0].result == 'fail' ){
+						alert("상품을 추가하는데 실패하였습니다.");
+					}else{
+						alert("상품을 장바구니에 담았어요.");
+						
+						if( !confirm("장바구니로 ㄱㄱ?") ){
+							return;
+						}
+						
+						location.href="cart_list.do";
+					}
+				}			
+			}
+		</script>
 	</head>
+	
+	
 	<body>
 		<jsp:include page="index.jsp"/>
 		
@@ -62,7 +99,7 @@
 			<tr>
 				<td colspan="2" align="center">
 					<input type="button" value="장바구니에 담기"
-						   onclick="location.href='cart_insert.do?idx=${vo.idx}'">
+						   onclick="addCart('${vo.idx}', '${ 1 }')">
 					
 					<input type="button" value="장바구니 보기"
 						   onclick="location.href='cart_list.do'">
