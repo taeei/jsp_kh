@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="p">
+	
+	<!-- 카테고리별 상품목록 -->
+	<select id="product_list"
+		    resultType="vo.ProductVO"
+		    parameterType="String">
+		select * from product where category=#{category}
+	</select>
+	
+	<!-- 제품 추가 -->
+	<insert id="product_insert"
+			parameterType="pro">
+		insert into product values(
+						seq_pro_idx.nextVal,
+						#{category},
+						#{p_num},
+						#{p_name},
+						#{p_company},
+						#{p_price},
+						#{p_saleprice},
+						#{p_image_s},
+						#{p_image_L},
+						#{p_content},
+						sysdate)
+	</insert>
+	
+	<!-- 수정, 상세보기 할 상품 조회 -->
+	<select id="upd_one"
+		  	resultType="pro"
+		  	parameterType="int">
+		select * from product where idx=#{idx}
+	</select>
+	
+	<!-- 상품 수정 -->
+	<update id="upd_product"
+			parameterType="pro">
+		update product set category=#{category},
+						p_num = #{p_num},
+						p_name = #{p_name},
+						p_company = #{p_company},
+						p_price = #{p_price},
+						p_saleprice = #{p_saleprice},
+						p_image_s = #{p_image_s},
+						p_image_L = #{p_image_L},
+						p_content = #{p_content},
+						p_date = sysdate
+						where idx = #{ idx }
+	</update>
+	
+	
+	<!-- 상품 삭제 -->
+	<delete id="product_del"
+			parameterType="int">
+		delete from product where idx=#{idx}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
